@@ -1,0 +1,26 @@
+{
+  "name": "redux-form-validation",
+  "version": "0.0.1",
+  "description": "An helper to make redux form validation easyer",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CosticaPuntaru/redux-form-validation.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "redux-form",
+    "validation",
+    "redux-form-validation"
+  ],
+  "author": "Costica Puntaru <costica.puntaru@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CosticaPuntaru/redux-form-validation/issues"
+  },
+  "homepage": "https://github.com/CosticaPuntaru/redux-form-validation#readme"
+}
