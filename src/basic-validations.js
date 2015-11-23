@@ -1,18 +1,20 @@
 export default {
   required: function (field, value, prop) {
-    return prop ? !value : false
+    return prop && value ? "This field is required." : false
   },
 
   minLength: function (field, value, prop) {
-    return prop && value ? value.length <= prop : false;
+    return prop && value && value.length >= prop?  `This field must have at least ${prop} characters`: false;
   },
 
   maxLength: function (field, value, prop) {
-    return prop && value ? value.length >= prop : false;
+    return prop && value && value.length <= prop ? `This field must have less then ${prop} characters` : false;
   },
 
   email: function (field, value, prop) {
-    return prop && value ? !(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value)) : false
+    return prop && value && !(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/.test(value)) ?
+        "Please insert a valid email address"
+        : false
   },
 
   min: function (field, value, prop) {
@@ -39,9 +41,9 @@ export default {
     return value ? false : !(/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value))
   },
 
-  promise: function (field, value, prop) {
+  promise: function (field, value, prop, dispatch) {
     if (typeof prop == 'function') {
-      return prop(value)
+      return prop(field, value, dispatch)
     }
     throw new Error("FormValidation: type promise must be a function!")
   },
@@ -82,11 +84,6 @@ export default {
     }
 
     return ( nCheck % 10 ) === 0;
-  },
-
-  custom: function (field, value, prop) {
-    return prop(value);
   }
-
 
 }

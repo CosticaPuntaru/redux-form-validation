@@ -1,6 +1,6 @@
 {
   "name": "redux-form-validation",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "An helper to make redux form validation easyer",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
@@ -13,7 +13,8 @@
     "redux",
     "redux-form",
     "validation",
-    "redux-form-validation"
+    "redux-form-validation",
+    "react-component"
   ],
   "author": "Costica Puntaru <costica.puntaru@gmail.com>",
   "license": "ISC",
@@ -63,5 +64,8 @@
         "*.js"
       ]
     }
-  ]
+  ],
+  "dependencies": {
+    "is-promise": "^2.1.0"
+  }
 }
