@@ -1,6 +1,6 @@
 {
   "name": "redux-form-validation",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "An helper to make redux form validation easyer",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
