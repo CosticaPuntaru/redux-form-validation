@@ -144,10 +144,18 @@ example for how to use validator:
        );
      }
    }
-   
 
+```
 
+## Without ES2015
 
-
+```javascript
+var temp = generateValidation(validations);
+reduxForm({
+     form: 'contact',
+     asyncValidate: temp.asyncValidate,
+     asyncBlurFields: temp.asyncBlurFields,
+     fields: temp.fields,
+   })(YourComponent)
 ```
 
