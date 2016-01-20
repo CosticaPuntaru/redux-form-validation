@@ -1,4 +1,4 @@
-# redux-form-form
+# redux-form-validation
 
 ## Installation
 ```npm install --save redux-form-validation```
