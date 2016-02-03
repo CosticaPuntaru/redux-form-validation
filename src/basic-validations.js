@@ -16,7 +16,7 @@ export default {
   },
 
   min: function (field, value, prop) {
-    return !isFinite(value) || parseFloat(value) >= prop;
+    return prop && value ? !isFinite(value) || parseFloat(value) < prop : false;
   },
 
   max: function (field, value, prop) {
