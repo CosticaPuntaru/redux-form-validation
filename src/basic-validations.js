@@ -4,7 +4,7 @@ export default {
   },
 
   minLength: function (field, value, prop) {
-    return prop && value ? value.length <= prop : false;
+    return prop && value ? value.length < prop : false;
   },
 
   maxLength: function (field, value, prop) {
