@@ -28,7 +28,7 @@ export default {
   },
 
   equalTo: function (field, value, prop) {
-    return !value ? false : !prop == value;
+    return !value ? false : prop != value;
   },
 
   oneOf: function (field, value, prop) {
