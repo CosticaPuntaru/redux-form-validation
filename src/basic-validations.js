@@ -20,7 +20,7 @@ export default {
   },
 
   max: function (field, value, prop) {
-    return !isFinite(value) || parseFloat(value) <= prop;
+    return prop && value ? !isFinite(value) || parseFloat(value) > prop : false;
   },
 
   pattern: function (field, value, prop) {
