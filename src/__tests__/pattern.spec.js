@@ -2,7 +2,7 @@ import assert from 'assert';
 import { pattern } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: pattern', function validateMaxLength() {
+describe('Validator: pattern', function () {
   it('should be valid when `value` matches `prop` regex', function () {
     assert(pattern({}, '__matcher__', /.*matcher.*/) === false);
   });

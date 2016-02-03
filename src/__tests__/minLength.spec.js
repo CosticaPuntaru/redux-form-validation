@@ -2,7 +2,7 @@ import assert from 'assert';
 import { minLength } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: minLength', function validateMinLength() {
+describe('Validator: minLength', function () {
   it('should be valid when `value` is undefined and `prop` is 3', function () {
     assert(minLength({}, undefined, 3) === false);
   });

@@ -2,7 +2,7 @@ import assert from 'assert';
 import { equalTo } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: equalTo', function validateMaxLength() {
+describe('Validator: equalTo', function () {
   it('should be valid when `value` (string) equals `prop` (string)', function () {
     assert(equalTo({}, 'matcher', 'matcher') === false);
   });

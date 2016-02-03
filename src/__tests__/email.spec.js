@@ -2,7 +2,7 @@ import assert from 'assert';
 import { email } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: email', function validateMaxLength() {
+describe('Validator: email', function () {
   it('should be invalid when `prop` is "x"', function () {
     assert(email({}, 'x', true) === true);
   });

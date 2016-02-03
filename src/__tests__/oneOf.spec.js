@@ -2,7 +2,7 @@ import assert from 'assert';
 import { oneOf } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: oneOf', function validateMaxLength() {
+describe('Validator: oneOf', function () {
   it('should be valid when `value` (string) is listed in `prop`', function () {
     assert(oneOf({}, 'bb', ['aa', 'bb', 'cc']) === false);
   });

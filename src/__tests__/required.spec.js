@@ -1,7 +1,7 @@
 import assert from 'assert';
 import { required } from '../basic-validations';
 
-describe('Validator: required', function validateRequired() {
+describe('Validator: required', function () {
   it('should return false when `value` is empty and `prop` is false', function () {
     assert(required({}, '', false) === false);
   });

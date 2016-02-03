@@ -2,7 +2,7 @@ import assert from 'assert';
 import { maxLength } from '../basic-validations';
 
 // Note: each validator returns `true` when the `value` is invalid
-describe('Validator: maxLength', function validateMaxLength() {
+describe('Validator: maxLength', function () {
   it('should be valid when `value` is undefined and `prop` is 3', function () {
     assert(maxLength({}, undefined, 3) === false);
   });
