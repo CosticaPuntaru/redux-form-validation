@@ -9,25 +9,25 @@ describe('Validator: pattern', function validateMaxLength() {
   it('should be invalid when `value` does not match `prop` regex', function () {
     assert(pattern({}, '__doesNotMatch__', /.*matcher.*/) === true);
   });
-  it('should be invalid when `prop` is boolean', function () {
+  it('should throw TypeError when `prop` is boolean', function () {
     assert.throws(
       () => pattern({}, 'z', true),
       TypeError
     );
   });
-  it('should be invalid when `prop` is string', function () {
+  it('should throw TypeError when `prop` is string', function () {
     assert.throws(
       () => pattern({}, 'z', 'a nice string'),
       TypeError
     );
   });
-  it('should be invalid when `prop` is object', function () {
+  it('should throw TypeError when `prop` is object', function () {
     assert.throws(
       () => pattern({}, 'z', {}),
       TypeError
     );
   });
-  it('should be invalid when `prop` is number', function () {
+  it('should throw TypeError when `prop` is number', function () {
     assert.throws(
       () => pattern({}, 'z', 99),
       TypeError
