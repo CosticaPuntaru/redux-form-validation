@@ -8,7 +8,7 @@ export default {
   },
 
   maxLength: function (field, value, prop) {
-    return prop && value ? value.length >= prop : false;
+    return prop && value ? value.length > prop : false;
   },
 
   email: function (field, value, prop) {
