@@ -27,7 +27,7 @@ const generateInvalid = (pieces, separator) => {
 };
 
 // Note: each validator returns `true` when the `value` is invalid
-describe.only('Validator: creditcard', function () {
+describe('Validator: creditcard', function () {
   describe('Should be valid', () => {
     describe('With no separator', () => {
       it('When `prop` is valid card number', () => {
