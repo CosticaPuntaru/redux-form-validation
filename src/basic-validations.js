@@ -48,7 +48,7 @@ export default {
     throw new Error("FormValidation: type promise must be a function!")
   },
   digits: function (field, value) {
-    return !field || /^\d+$/.test(value);
+    return !field || !/^\d+$/.test(value);
   },
   creditcard: function (field, value, prop) {
     if (!value) {
