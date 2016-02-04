@@ -56,7 +56,7 @@ export default {
     }
     // accept only spaces, digits and dashes
     if (/[^0-9 \-]+/.test(value)) {
-      return false;
+      return true;
     }
     var nCheck = 0,
       nDigit = 0,
@@ -66,7 +66,7 @@ export default {
     value = value.replace(/\D/g, "");
 
     // Basing min and max length on
-    // http://developer.ean.com/general_info/Valid_Credit_Card_Types
+    // http://developer.ean.com/general-info/valid-card-types/
     if (value.length < 13 || value.length > 19) {
       return false;
     }
@@ -83,7 +83,7 @@ export default {
       bEven = !bEven;
     }
 
-    return ( nCheck % 10 ) === 0;
+    return ( nCheck % 10 ) !== 0;
   }
 
 }
