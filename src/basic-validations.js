@@ -1,14 +1,16 @@
+import validUrl from 'valid-url';
+
 export default {
   required: function (field, value, prop) {
     return prop ? !value : false
   },
 
   minLength: function (field, value, prop) {
-    return prop && value ? value.length <= prop : false;
+    return prop && value ? value.length < prop : false;
   },
 
   maxLength: function (field, value, prop) {
-    return prop && value ? value.length >= prop : false;
+    return prop && value ? value.length > prop : false;
   },
 
   email: function (field, value, prop) {
@@ -16,11 +18,11 @@ export default {
   },
 
   min: function (field, value, prop) {
-    return !isFinite(value) || parseFloat(value) >= prop;
+    return prop && value ? !isFinite(value) || parseFloat(value) < prop : false;
   },
 
   max: function (field, value, prop) {
-    return !isFinite(value) || parseFloat(value) <= prop;
+    return prop && value ? !isFinite(value) || parseFloat(value) > prop : false;
   },
 
   pattern: function (field, value, prop) {
@@ -28,7 +30,7 @@ export default {
   },
 
   equalTo: function (field, value, prop) {
-    return !value ? false : !prop == value;
+    return !value ? false : prop != value;
   },
 
   oneOf: function (field, value, prop) {
@@ -36,7 +38,7 @@ export default {
   },
 
   url: function (field, value, prop) {
-    return value ? false : !(/^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})).?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(value))
+    return !value ? false : !validUrl.isUri(value);
   },
 
   promise: function (field, value, prop) {
@@ -46,7 +48,7 @@ export default {
     throw new Error("FormValidation: type promise must be a function!")
   },
   digits: function (field, value) {
-    return !field || /^\d+$/.test(value);
+    return !field || !/^\d+$/.test(value);
   },
   creditcard: function (field, value, prop) {
     if (!value) {
@@ -54,7 +56,7 @@ export default {
     }
     // accept only spaces, digits and dashes
     if (/[^0-9 \-]+/.test(value)) {
-      return false;
+      return true;
     }
     var nCheck = 0,
       nDigit = 0,
@@ -64,7 +66,7 @@ export default {
     value = value.replace(/\D/g, "");
 
     // Basing min and max length on
-    // http://developer.ean.com/general_info/Valid_Credit_Card_Types
+    // http://developer.ean.com/general-info/valid-card-types/
     if (value.length < 13 || value.length > 19) {
       return false;
     }
@@ -81,9 +83,9 @@ export default {
       bEven = !bEven;
     }
 
-    return ( nCheck % 10 ) === 0;
+    return ( nCheck % 10 ) !== 0;
   },
   matchField: function(field, value, prop, dispatch, allValues){
-    return !value ? false : value != allValues[prop];
+    return !value ? false : value != allValues[prop];    
   }
 }
