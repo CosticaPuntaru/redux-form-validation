@@ -1,0 +1,15 @@
+
+label{
+    width:150px;
+    display: inline-block;
+    text-align: left;
+}
+button{
+    margin-top: 20px;
+}
+body{
+    text-align: center;
+}
+ul{
+    list-style: none;
+}

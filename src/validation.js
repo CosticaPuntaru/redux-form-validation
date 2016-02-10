@@ -33,7 +33,7 @@ export function generateAsyncValidation(validationConfig) {
                     if (typeof validationStore[validationType] != 'function') {
                         return;
                     }
-                    var hasError = validationStore[validationType](fieldName, values[fieldName], validation[validationType], dispatch);
+                    var hasError = validationStore[validationType](fieldName, values[fieldName], validation[validationType], dispatch, values, validation);
                     if (isPromise(hasError)) {
                         promiseList.push(new Promise((resolve, reject)=> {
                             hasError.then(resolve).catch((msg) => {
