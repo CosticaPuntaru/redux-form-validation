@@ -10,7 +10,7 @@ export default class FormMessages extends Component {
         });
 
       var displayErrorCount = parseInt(errorCount, 10);
-      if (displayErrorCount < -1) {
+      if (displayErrorCount < 0) {
         return errorList;
       }
       return errorList.slice(0, displayErrorCount);

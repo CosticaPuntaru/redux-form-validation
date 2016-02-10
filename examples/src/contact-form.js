@@ -77,7 +77,7 @@ export default class ContactForm extends Component {
         <div>
           <label>Email</label>
           <input type="email" required="required" placeholder="Email" {...email}/>
-          <FormMessages tagName="ul" field={email}>
+          <FormMessages tagName="ul" errorCount="2" field={email}>
             <li when="promise">
               {email.error && email.error.promise}
             </li>
