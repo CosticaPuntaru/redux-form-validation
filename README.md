@@ -14,7 +14,7 @@ builtin validation can be found in /src/basic-validation.js
 
   import FormMessages from 'redux-form-validation';
   
-  FormMessages.addValidation('required', function (field, value, prop) {
+  FormMessages.addValidation('required', function (field, value, prop, dispatch, allValues, allProps) {
      return prop ? !value : false
    })
 ```
