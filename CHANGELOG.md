@@ -31,3 +31,5 @@ var validations = {
     To run the example run `npm i -d && npm start`
 - **fixed** `FormMessage` component.
     Render error when only has one child.
+- **added** tests
+    credits for this one goes to @mcalthrop
