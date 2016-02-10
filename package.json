@@ -35,7 +35,7 @@
     "build:umd:min": "webpack src/index.js dist/redux-form-validation.min.js --config webpack/production.js",
     "clean": "rimraf dist lib",
     "lint": "eslint src",
-    "prepublish": "npm run clean && npm run build",
+    "prepublish": "npm run clean && npm run test && npm run build",
     "test": "npm run lint && mocha --compilers js:babel/register --recursive 'src/**/__tests__/*.spec.js' --require src/__tests__/setup.js"
   },
   "devDependencies": {
