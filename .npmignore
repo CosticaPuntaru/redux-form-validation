@@ -6,4 +6,4 @@ test
 .idea
 .npmignore
 .travis.yml
-webpack.*
+webpack

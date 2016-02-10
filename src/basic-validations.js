@@ -82,6 +82,8 @@ export default {
     }
 
     return ( nCheck % 10 ) === 0;
+  },
+  matchField: function(field, value, prop, dispatch, allValues){
+    return !value ? false : value != allValues[prop];
   }
-
 }
