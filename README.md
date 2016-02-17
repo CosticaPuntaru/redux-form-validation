@@ -159,3 +159,7 @@ reduxForm({
    })(YourComponent)
 ```
 
+
+## Examples:
+to run the example project you need to clone the repo and run `npm i -d && npm start`
+
