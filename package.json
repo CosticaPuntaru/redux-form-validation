@@ -29,6 +29,7 @@
   },
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/example.js",
+    "check:src": "npm run lint && npm run test",
     "build": "npm run build:lib && npm run build:umd && npm run build:umd:min",
     "build:lib": "babel src --out-dir lib",
     "build:umd": "webpack src/index.js dist/redux-form-validation.js --config webpack/development.js",
