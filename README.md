@@ -1,5 +1,8 @@
 # redux-form-validation
 
+[![Build Status](https://travis-ci.org/CosticaPuntaru/redux-form-validation.svg?branch=master)](https://travis-ci.org/CosticaPuntaru/redux-form-validation)
+[![npm version](https://img.shields.io/npm/v/redux-form-validation.svg?style=flat-square)](https://www.npmjs.com/package/redux-form-validation)
+[![npm downloads](https://img.shields.io/npm/dm/redux-form-validation.svg?style=flat-square)](https://www.npmjs.com/package/redux-form-validation)
 ## Installation
 ```npm install --save redux-form-validation```
 
