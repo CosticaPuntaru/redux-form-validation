@@ -41,9 +41,9 @@ export default {
     return !value ? false : !validUrl.isUri(value);
   },
 
-  promise: function (field, value, prop) {
+  promise: function (field, value, prop, dispatch) {
     if (typeof prop == 'function') {
-      return prop(field, value)
+      return prop(field, value, dispatch)
     }
     throw new Error("FormValidation: type promise must be a function!")
   },
