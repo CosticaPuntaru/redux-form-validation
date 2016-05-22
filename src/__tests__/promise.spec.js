@@ -21,13 +21,15 @@ describe('Validator: promise', function () {
     it('When function is provided', (done) => {
       const testField = 1;
       const testValue = 2;
-      const testProp = (field, value) => {
+      const dispatchFn = function(){};
+      const testProp = (field, value, dispatch) => {
         assert(field === testField);
         assert(value === testValue);
+        assert(dispatchFn === dispatch);
         done();
       };
 
-      promise(testField, testValue, testProp);
+      promise(testField, testValue, testProp, dispatchFn);
     });
   });
 });
