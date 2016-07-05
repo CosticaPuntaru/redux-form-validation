@@ -1,6 +1,6 @@
 {
   "name": "redux-form-validation",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "An helper to make redux form validation easyer",
   "main": "lib/index.js",
   "jsnext:main": "./src/index.js",
@@ -25,7 +25,7 @@
   "peerDependencies": {
     "react-redux": "^3.0.0 || ^4.0.0 || ^5.0.0",
     "redux": "^3.3.1",
-    "redux-form": "^4.1.8"
+    "redux-form": "^4.1.8 || ^5.0.0"
   },
   "scripts": {
     "start": "webpack-dev-server --config ./webpack/example.js",
