@@ -1,12 +1,14 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PureComponent, PropTypes} from 'react';
 
-export default class FormMessages extends Component {
+export default class FormMessages extends PureComponent {
 
   renderChildren(children, field, errorCount) {
-    if (field && field.touched && field.error) {
+    var error = field && (field.error || (field.meta && field.meta.error));
+    var touched = field && (field.touched || (field.meta && field.meta.touched));
+    if (touched && error) {
       var errorList = React.Children.toArray(children)
         .filter(function (child) {
-          return child.props.when && field.error[child.props.when]
+          return child.props.when && error[child.props.when]
         });
 
       var displayErrorCount = parseInt(errorCount, 10);

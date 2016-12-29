@@ -14,7 +14,7 @@ addMultipleValidations(basicValidations);
 
 
 export function generateAsyncValidation(validationConfig) {
-    return (values, dispatch) => {
+    return (values, dispatch, props, blurredField) => {
         var promiseList = [Promise.resolve()];
         var errors = {};
 
@@ -33,11 +33,11 @@ export function generateAsyncValidation(validationConfig) {
                     if (typeof validationStore[validationType] != 'function') {
                         return;
                     }
-                    var hasError = validationStore[validationType](fieldName, values[fieldName], validation[validationType], dispatch, values, validation);
+                    var value = typeof values.get == 'function' ? values.get(fieldName) : values[fieldName]; // immutableJS
+                    var hasError = validationStore[validationType](fieldName, value, validation[validationType], dispatch, values, validation, props, blurredField);
                     if (isPromise(hasError)) {
                         promiseList.push(new Promise((resolve, reject)=> {
                             hasError.then(resolve).catch((msg) => {
-                                console.log('promise has error', msg);
                                 addError(fieldName, validationType, msg);
                                 resolve();
                             })
