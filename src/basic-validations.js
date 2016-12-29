@@ -41,9 +41,9 @@ export default {
     return !value ? false : !validUrl.isUri(value);
   },
 
-  promise: function (field, value, prop, dispatch) {
+  promise: function (field, value, prop, dispatch, values, validation, props, blurredField) {
     if (typeof prop == 'function') {
-      return prop(field, value, dispatch)
+      return prop(field, value, dispatch, values, validation, props, blurredField)
     }
     throw new Error("FormValidation: type promise must be a function!")
   },
@@ -86,6 +86,6 @@ export default {
     return ( nCheck % 10 ) !== 0;
   },
   matchField: function(field, value, prop, dispatch, allValues){
-    return !value ? false : value != allValues[prop];
+    return !value ? false : value != (typeof allValues.get == 'function' ? allValues.get(prop) : allValues[prop]); // immutableJS
   }
 }

@@ -1,3 +1,6 @@
+# 0.1.0
+- **added** Minimal support for redux-from v6
+
 # 0.0.6
 - **added** `allValues` and `allProps` params to validator.
     It can be used to create validations that requires other fields value and props  like `matchField`.
