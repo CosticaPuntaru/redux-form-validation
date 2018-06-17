@@ -41,9 +41,9 @@ export default {
     return !value ? false : !validUrl.isUri(value);
   },
 
-  promise: function (field, value, prop, dispatch) {
+  promise: function (field, value, prop, dispatch, values, validation, props, blurredField) {
     if (typeof prop == 'function') {
-      return prop(field, value, dispatch)
+      return prop(field, value, dispatch, values, validation, props, blurredField)
     }
     throw new Error("FormValidation: type promise must be a function!")
   },
@@ -75,7 +75,7 @@ export default {
       cDigit = value.charAt(n);
       nDigit = parseInt(cDigit, 10);
       if (bEven) {
-        if (( nDigit *= 2 ) > 9) {
+        if ((nDigit *= 2) > 9) {
           nDigit -= 9;
         }
       }
@@ -83,9 +83,17 @@ export default {
       bEven = !bEven;
     }
 
-    return ( nCheck % 10 ) !== 0;
+    return (nCheck % 10) !== 0;
   },
-  matchField: function(field, value, prop, dispatch, allValues){
-    return !value ? false : value != allValues[prop];
+  matchField: function (field, value, prop, dispatch, allValues) {
+    console.log('aaaaa', {field, value, prop, dispatch, allValues});
+    if (!value) {
+      return false;
+    }
+    if (typeof allValues.get === 'function') { // immutableJS
+      return value !== allValues.get(prop);
+    } else {
+      return value !== allValues[prop]
+    }
   }
 }

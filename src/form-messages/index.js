@@ -1,15 +1,28 @@
-import React, {Component, PropTypes} from 'react';
+import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 
-export default class FormMessages extends Component {
+export default class FormMessages extends PureComponent {
+  static defaultProps = {
+    errorCount: -1,
+    tagName: 'div'
+  };
 
-  renderChildren(children, field, errorCount) {
-    if (field && field.touched && field.error) {
-      var errorList = React.Children.toArray(children)
+  static propTypes = {
+    meta: PropTypes.object.isRequired,
+    tagName: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+    errorCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  };
+
+  renderChildren(children, meta, errorCount) {
+    const {error, touched} = meta;
+
+    if (touched && error) {
+      const errorList = React.Children.toArray(children)
         .filter(function (child) {
-          return child.props.when && field.error[child.props.when]
+          return child.props.when && error[child.props.when]
         });
 
-      var displayErrorCount = parseInt(errorCount, 10);
+      const displayErrorCount = parseInt(errorCount, 10);
       if (displayErrorCount < 0) {
         return errorList;
       }
@@ -18,23 +31,17 @@ export default class FormMessages extends Component {
   }
 
   render() {
-    const {children, field, errorCount, tagName, ...rest} = this.props;
+    const {children, meta, errorCount, tagName: TagName, ...rest} = this.props;
+    const errorList = this.renderChildren(children, meta, errorCount);
+
+    if (!errorList || !errorList.length) {
+      return null;
+    }
 
     return (
-      <this.props.tagName {...rest}>
-        { this.renderChildren(children, field, errorCount)}
-      </this.props.tagName>
+      <TagName {...rest}>
+        {errorList}
+      </TagName>
     )
   }
-};
-
-FormMessages.propTypes = {
-  field: PropTypes.object.isRequired,
-  tagName: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-  errorCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-};
-
-FormMessages.defaultProps = {
-  errorCount: -1,
-  tagName: 'div'
 };

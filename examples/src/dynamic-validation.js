@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import { reduxForm } from 'redux-form';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {reduxForm, Field} from 'redux-form';
+import {connect} from 'react-redux';
 import FormMessages from 'redux-form-validation';
-import { generateValidation } from 'redux-form-validation';
+import {generateValidation} from 'redux-form-validation';
 
 
 var validations = {
@@ -46,7 +46,7 @@ const submit = (values, dispatch) => {
 };
 
 
-export default class FormController extends Component{
+export default class FormController extends Component {
   constructor() {
     super();
     this.state = {
@@ -55,7 +55,7 @@ export default class FormController extends Component{
     this.init();
   }
 
-  init(){
+  init() {
     setTimeout(() => {
       this.setState({
         formValidate: generateValidation(validations)
@@ -79,21 +79,49 @@ export default class FormController extends Component{
   }
 }
 
-
 @connect()
 @reduxForm({
-  form: 'contact',
+  form: 'dynamicContact',
 })
-class ContactForm extends Component {
+export default class ContactForm extends Component {
+  // probably you will want to use different messages for different fields but for the demo this is good enough
+  renderField = ({input, label, type, meta}) => {
+    return (
+      <div>
+        <label>{label}</label>
+        <div>
+          <input {...input} placeholder={label} type={type} />
+          <FormMessages tagName="ul" meta={meta}>
+            <li when="promise">
+              {meta && meta.error && meta.error.promise}
+            </li>
+            <li when="matchField">
+              the retry email must be the same as the email
+            </li>
+            <li when="required">
+              this field is required
+            </li>
+            <li when="email">
+              please insert a valid email
+            </li>
+            <li when="minLength">
+              this field must have at least 5 characters
+            </li>
+          </FormMessages>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const {
-      fields: { name, subject, email, retryEmail, message },
       handleSubmit,
       submitting,
       valid,
       pristine,
       asyncValidating,
     } = this.props;
+    console.log('this.props', this.props);
     var submitLabel = "Send";
 
     if (pristine) {
@@ -107,73 +135,39 @@ class ContactForm extends Component {
     }
     return (
       <form onSubmit={handleSubmit(submit)}>
-        <div>
-          <label>Email</label>
-          <input type="email" required="required" placeholder="Email" {...email}/>
-          <FormMessages tagName="ul" errorCount="2" field={email}>
-            <li when="promise">
-              {email.error && email.error.promise}
-            </li>
-            <li when="required">
-              this field is required
-            </li>
-            <li when="email">
-              please insert a valid email
-            </li>
-            <li when="minLength">
-              this field must have at least 5 characters
-            </li>
-          </FormMessages>
-        </div>
-        <div>
-          <label>Retry email</label>
-          <input type="email" required="required" placeholder="Retry email" {...retryEmail}/>
-          <FormMessages tagName="ul" field={retryEmail}>
-            <li when="required">
-              this field is required
-            </li>
-            <li when="matchField">
-              the retry email must be the same as the email
-            </li>
-          </FormMessages>
-        </div>
-        <div>
-          <label>Name</label>
-          <input type="text" required="required" placeholder="Name" {...name}/>
-          <FormMessages tagName="ul" field={name}>
-            <li when="required">
-              this field is required
-            </li>
-          </FormMessages>
-        </div>
-        <div>
-          <label>Subject</label>
-          <input type="text" required="required" placeholder="Subject" {...subject}/>
-          <FormMessages tagName="ul" errorCount="1" field={subject}>
-            <li when="required">
-              this field is required
-            </li>
-            <li when="email">
-              please insert a valid email
-            </li>
-            <li when="minLength">
-              this field must have at least 5 characters
-            </li>
-          </FormMessages>
-        </div>
-        <div>
-          <label>Message</label>
-          <textarea type="text" required="required" placeholder="Subject" {...message}/>
-          <FormMessages tagName="ul" field={message}>
-            <li when="required">
-              this field is required
-            </li>
-            <li when="minLength">
-              this field must have at least 10 characters
-            </li>
-          </FormMessages>
-        </div>
-        <button disabled={!valid || pristine || asyncValidating} onClick={handleSubmit(submit)}>
+        <Field
+          name="email"
+          type="email"
+          component={this.renderField}
+          label="Username (test@example.com is taken)"
+        />
+
+        <Field
+          name="retryEmail"
+          type="email"
+          component={this.renderField}
+          label="Retry email"
+        />
+        <Field
+          name="name"
+          type="text"
+          component={this.renderField}
+          label="Username"
+        />
+
+        <Field
+          name="subject"
+          type="text"
+          component={this.renderField}
+          label="Subject"
+        />
+        <Field
+          name="message"
+          type="text"
+          component={this.renderField}
+          label="Message"
+        />
+        <button onClick={handleSubmit(submit)}>
           {submitLabel}
         </button>
       </form>
