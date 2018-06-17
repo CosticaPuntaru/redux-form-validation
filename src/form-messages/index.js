@@ -2,17 +2,6 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
 export default class FormMessages extends PureComponent {
-  static defaultProps = {
-    errorCount: -1,
-    tagName: 'div'
-  };
-
-  static propTypes = {
-    meta: PropTypes.object.isRequired,
-    tagName: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
-    errorCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-  };
-
   renderChildren(children, meta, errorCount) {
     const {error, touched} = meta;
 
@@ -44,4 +33,15 @@ export default class FormMessages extends PureComponent {
       </TagName>
     )
   }
+};
+
+FormMessages.defaultProps = {
+  errorCount: -1,
+  tagName: 'div'
+};
+
+FormMessages.propTypes = {
+  meta: PropTypes.object.isRequired,
+  tagName: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
+  errorCount: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
 };
