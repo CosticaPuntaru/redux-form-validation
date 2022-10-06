@@ -1,4 +1,4 @@
-# redux-form-validation THIS LIBRARY IS MO LONGER MENTAINED
+# redux-form-validation THIS LIBRARY NOT MENTAINED
 
 [![Build Status](https://travis-ci.org/CosticaPuntaru/redux-form-validation.svg?branch=master)](https://travis-ci.org/CosticaPuntaru/redux-form-validation)
 [![npm version](https://img.shields.io/npm/v/redux-form-validation.svg?style=flat-square)](https://www.npmjs.com/package/redux-form-validation)
